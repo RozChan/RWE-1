@@ -1,0 +1,29 @@
+# 为什么天空是蓝色的？Why Is the Sky Blue?
+
+很多人小时候都问过一个问题：为什么天空看起来是蓝色，而不是绿色、红色或透明的？这个问题看似简单，其实涉及光的传播、空气分子以及人眼感知。
+
+Sunlight looks white, but it is actually made of many colors. When sunlight enters Earth's atmosphere, it meets countless tiny molecules such as nitrogen and oxygen.
+
+一、光并不是单一颜色
+
+白光可以被看作多种颜色的组合。比如用三棱镜分解阳光时，我们能看到 red, orange, yellow, green, blue, indigo and violet 这些颜色。不同颜色的光有不同的 wavelength（波长）。
+
+蓝光和紫光的波长较短，红光和橙光的波长较长。短波长的光更容易被空气中的小分子散射，这就是 Rayleigh scattering（瑞利散射）的核心。
+
+二、为什么不是紫色？
+
+从物理上说，紫光比蓝光波长更短，理论上也更容易散射。但天空并不常显得紫色，主要有几个原因：太阳光中的紫光比例较少；高层大气会吸收一部分紫外和紫色附近的光；人眼对蓝色比对紫色更敏感。
+
+In other words, the sky is blue not because blue is the only scattered color, but because blue light is scattered strongly and our eyes are especially good at noticing it.
+
+三、日出和日落为什么偏红？
+
+When the sun is near the horizon, sunlight travels through a much longer path in the atmosphere. Much of the blue light has already been scattered away before the light reaches our eyes.
+
+因此，剩下来的光更偏向长波长的红色、橙色和黄色。这就是 sunrise 和 sunset 常常呈现 warm colors 的原因。
+
+四、这个现象有什么启发？
+
+天空颜色提醒我们：日常现象背后往往有清晰的科学机制。A simple observation can lead to questions about optics, atmosphere, biology, and even the limits of human perception.
+
+总结来说，天空是蓝色的，是因为阳光进入大气后，短波长蓝光被空气分子更强烈地散射，而人眼又更容易感知蓝色。这个答案同时连接了 physics, environment and human vision。
