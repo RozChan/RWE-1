@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.intranet.example
+!backend/.env.example
+backend/.env
+frontend/.env.local
+frontend/.env.production
+frontend/node_modules/
+frontend/.next/
+frontend/test-results/
+frontend/playwright-report/
+*.tsbuildinfo
+.venv/
+backend/.venv/
+logs/
+*.pyc
+__pycache__/

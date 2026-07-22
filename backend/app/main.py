@@ -1,7 +1,6 @@
 from dataclasses import asdict
 
 from fastapi import FastAPI, File, HTTPException, UploadFile
-from fastapi.middleware.cors import CORSMiddleware
 from pydantic import ValidationError
 
 from .domain import ParsedMeetingMetadata, ParsedTranscriptSegment
@@ -41,15 +40,6 @@ from .parser import TranscriptParseError, decode_transcript, parse_document, par
 MAX_UPLOAD_BYTES = 5 * 1024 * 1024
 
 app = FastAPI(title="Reading Without Effort API", version="0.2.0")
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-
 llm_provider = create_llm_provider(get_llm_settings())
 
 
@@ -77,11 +67,7 @@ async def _read_txt_upload(file: UploadFile) -> tuple[str, str]:
 
 @app.get("/api/health", response_model=HealthResponse)
 def health() -> HealthResponse:
-    return HealthResponse(
-        status="ok",
-        llm_provider=llm_provider.name,
-        llm_model=llm_provider.model_name,
-    )
+    return HealthResponse(status="ok")
 
 
 @app.post("/api/documents/parse", response_model=ParseDocumentResponse)

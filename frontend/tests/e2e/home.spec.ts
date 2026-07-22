@@ -2,7 +2,7 @@ import path from "node:path";
 import { expect, test, type Page } from "@playwright/test";
 import { installRuntimeErrorGuards } from "./utils/runtimeErrors";
 
-const parseApiUrl = "http://localhost:8000/api/documents/parse";
+const parseApiUrl = "**/api/documents/parse";
 
 async function openHomeWithoutRuntimeErrors(page: Page) {
   const runtimeErrors = installRuntimeErrorGuards(page);
@@ -110,5 +110,51 @@ test("uploading a sample meeting txt renders source paragraphs", async ({ page }
   await expect(page.getByTestId("source-segment-card").first()).toContainText("P1");
   await expect(page.getByTestId("source-segment-card").first()).toContainText("知识库资料检索");
   await expect(page.getByTestId("source-segment-card").nth(1)).toContainText("项目管理和用户反馈");
+  await runtimeErrors.assertNoRuntimeErrors();
+});
+
+test("AgentPlanCard renders a pending plan without plan reference errors", async ({ page }) => {
+  const runtimeErrors = installRuntimeErrorGuards(page);
+  await page.route("**/api/agent/plan", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        plan: {
+          id: "plan-regression-1",
+          userIntent: "新增一个客户洞察维度",
+          assistantReply: "我会先新增一个客户洞察维度，等待你确认后再执行。",
+          operations: [
+            {
+              id: "op-add-customer-insight",
+              type: "add_dimension",
+              title: "新增客户洞察维度",
+              description: "识别客户诉求、反馈和潜在机会。",
+              riskLevel: "low",
+              requiresConfirmation: true,
+              params: {
+                label: "客户洞察",
+                description: "识别客户诉求、反馈和潜在机会。",
+              },
+            },
+          ],
+          warnings: [],
+          assumptions: [],
+          requiresConfirmation: true,
+          confirmationText: "确认后我将新增该维度。",
+          createdAt: "2026-07-07T00:00:00.000Z",
+        },
+      }),
+    });
+  });
+
+  await page.goto("/");
+  await page.waitForLoadState("networkidle");
+  await page.getByTestId("agent-panel").locator("textarea").fill("新增一个客户洞察维度");
+  await page.getByTestId("agent-panel").locator('button[type="submit"]').click();
+
+  await expect(page.getByText("我准备这样做")).toBeVisible();
+  await expect(page.getByText("1 个操作")).toBeVisible();
+  await expect(page.getByText("新增客户洞察维度")).toBeVisible();
   await runtimeErrors.assertNoRuntimeErrors();
 });

@@ -116,8 +116,6 @@ class AnalysisNoResult(BaseModel):
 
 class HealthResponse(BaseModel):
     status: str
-    llm_provider: str
-    llm_model: str
 
 
 class AnalyzeDocumentRequest(BaseModel):
