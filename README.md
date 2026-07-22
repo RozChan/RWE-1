@@ -61,6 +61,8 @@ DEEPSEEK_THINKING=disabled
 
 ## 本地运行
 
+需要让同一公司内网的其他电脑访问时，请使用生产构建和专用脚本，不要长期运行开发服务器。完整步骤、架构、防火墙说明和多人使用限制见 [`docs/INTRANET_DEPLOYMENT_WINDOWS.md`](docs/INTRANET_DEPLOYMENT_WINDOWS.md)。
+
 ### Windows 公司电脑：推荐一键启动
 
 1. 双击 `setup-windows.cmd`；

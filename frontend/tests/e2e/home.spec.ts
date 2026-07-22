@@ -2,7 +2,7 @@ import path from "node:path";
 import { expect, test, type Page } from "@playwright/test";
 import { installRuntimeErrorGuards } from "./utils/runtimeErrors";
 
-const parseApiUrl = "http://localhost:8000/api/documents/parse";
+const parseApiUrl = "**/api/documents/parse";
 
 async function openHomeWithoutRuntimeErrors(page: Page) {
   const runtimeErrors = installRuntimeErrorGuards(page);
@@ -115,7 +115,7 @@ test("uploading a sample meeting txt renders source paragraphs", async ({ page }
 
 test("AgentPlanCard renders a pending plan without plan reference errors", async ({ page }) => {
   const runtimeErrors = installRuntimeErrorGuards(page);
-  await page.route("http://localhost:8000/api/agent/plan", async (route) => {
+  await page.route("**/api/agent/plan", async (route) => {
     await route.fulfill({
       status: 200,
       contentType: "application/json",

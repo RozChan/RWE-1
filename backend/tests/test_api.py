@@ -20,10 +20,7 @@ class MeetingApiTests(unittest.TestCase):
     def test_health(self) -> None:
         response = self.client.get("/api/health")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            response.json(),
-            {"status": "ok", "llm_provider": "mock", "llm_model": "local-rules"},
-        )
+        self.assertEqual(response.json(), {"status": "ok"})
 
     def test_uploads_and_parses_txt(self) -> None:
         with FIXTURE.open("rb") as file:

@@ -16,17 +16,12 @@ import type {
   ParseDocumentResponse,
   DocumentChunk,
 } from "@/lib/types";
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000";
-
 async function request<T>(path: string, init: RequestInit): Promise<T> {
   let response: Response;
   try {
-    response = await fetch(`${API_BASE_URL}${path}`, init);
+    response = await fetch(path, init);
   } catch {
-    throw new Error(
-      `无法连接后端服务，请确认 FastAPI 已在 ${API_BASE_URL} 启动。`,
-    );
+    throw new Error("无法连接服务，请联系工作站管理员检查运行状态。");
   }
   if (!response.ok) {
     const payload = await response.json().catch(() => null);
